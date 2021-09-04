@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算器</title>
+</head>
+<body>
+    <div>
+        <input type="text" name="" id="num1">
+        <select name="" id="ysf">
+
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+    
+        </select>
+        <input type="text" name="" id="num2">
+        <input type="button" value="计算" id="btn">
+
+    </div>
+    <p id="res"></p>
+    <script>
+        document.getElementById("btn").onclick = function(){
+            var num1 = document.getElementById("num1").value
+            var num2 = document.getElementById("num2").value
+            var ysf = document.getElementById("ysf").value
+            // alert(num1)
+            // console.log(num1)
+            // 需要把字符串转换成数字类型 否则 num1+num2 为字符串的拼接
+            num1 = parseFloat(num1)
+            num2 = parseFloat(num2)
+            result = "Err  "
+            //  标志位 出现错误则标志位为false
+            flag = true
+            if (num1 == ""){
+                
+                result += "num1 错误" 
+                flag = false
+            }else{
+                if (isNaN(num1)){
+                    result += "num1 错误" 
+                    flag = false
+                }
+            }
+            
+            if(num2 == ""){
+                result +="num2 错误"
+                flag = false
+            }
+            else{
+                if (isNaN(num2)){
+                    result += "num2 错误" 
+                    flag = false
+                }
+
+            }
+            if (flag){
+                
+                switch(ysf){
+                case "+":result = "运算结果:" + num1 + " +" + num2 + "=" + (num1+num2) ;break; 
+                case "-":result = "运算结果:" + num1 + " +" + num2 + "=" + (num1-num2) ;break;
+                case "*":result = "运算结果:" + num1 + " +" + num2 + "=" + (num1*num2) ;break;
+                case "/":
+                    if (num2==0){
+                        result = "除数为0"                 
+                       }
+                    else{
+                        result = "运算结果:" + num1 + " +" + num2 + "=" + (num1/num2) ;break;
+                    }   
+                    
+
+            }
+            }
+            
+            document.getElementById("res").innerHTML = result
+            // if (ysf=="+"){
+            //     document.getElementById("res").innerHTML = Number(num1)+Number(num2)
+            // } 
+            
+            
+        }
+
+    </script>
+    
+</body>
+</html>
