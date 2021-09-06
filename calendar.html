@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        #data{
+            width: 280px;  
+            margin: 50px auto;
+            border: 1px black solid;
+        }
+        #data > p{
+            display: flex;
+        }
+        #data > h3{
+            text-align: center;
+        }
+
+        #data >p >span{
+            padding: 0px 10px;
+        }
+        #prev,#next{
+            cursor: pointer;
+        }
+        #year{
+            /* flex 让所有弹性盒模型的子元素都有相同的长度，且忽略他们的内部内容  */
+            flex: 1;
+            text-align: center;
+        }
+        #title{
+            overflow: hidden;
+            background-color: #ccc;
+            list-style: none;
+        }
+        #title > li{
+            float: left;
+            width: 40px;
+            height: 25px;
+            line-height: 25px;
+            text-align:center;
+        }
+        #date{
+            overflow: hidden;
+        }
+        #date>li{
+            float: left;
+            width: 34px;
+            height: 34px;
+            margin:1px 1px;
+            border: 2px solid rgba(0, 0, 0, 0);
+            text-align: center;
+            /* cursor 属性是为了让鼠标指针发生变化 pointer 变成一个小手的形式 */
+            cursor: pointer;
+        }
+        #date >.hover:hover{
+            border: 2px solid red;
+        }
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="data">
+        <p>
+        <span id="prev">上一月</span>
+        <span id="year">2021</span>
+        <span id="next">下一月</span>
+        </p>
+        <h3 id="month">一月</h3>
+        <ul id="title"> 
+            <li>日</li>
+            <li>一</li>
+            <li>二</li>
+            <li>三</li>
+            <li>四</li>
+            <li>五</li>
+            <li>六</li>
+        </ul>
+        <ul id="date">
+            
+        </ul>
+
+    </div>
+
+    <script>
+        let date = new Date()
+        add()
+        function add(){
+            
+            let cYear = date.getFullYear()
+            let cMonth = date.getMonth()
+            // 获取当前月的第一天是周几
+            let week = new Date(cYear,cMonth,1).getDay()
+            // 获取每个月的天数
+            let numdays = new Date(cYear,cMonth+1,-1).getDate()+1
+            let cday = date.getDate()
+
+            // console.log( cday)
+            // alert(cday)
+            let arrM = ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",]
+            document.getElementById("year").innerHTML = cYear
+            document.getElementById("month").innerHTML = arrM[cMonth]
+            let everydate = ""
+            //  把 前几天设置为空
+            for(i=0;i<week;i++){
+                everydate += "<li></li>"
+            }
+
+            for(i=1;i<=numdays;i++){
+                if(i==cday){
+                    //  这里 “” 和‘’ 要同时使用 要不然分不清结束符
+                    everydate += '<li class="active">'+i+'</li>';
+                }
+                else{
+                    everydate += "<li class = 'hover'>"+i+"</li>"
+                }
+                
+            }
+            document.getElementById("date").innerHTML = everydate
+        }
+        // 设置单击响应函数
+        document.getElementById("prev").onclick=function(){
+            date.setMonth(date.getMonth()-1)
+            add()
+        }
+        document.getElementById("next").onclick=function(){
+            date.setMonth(date.getMonth()+1)
+            add()
+        }
+
+    </script>
+</body>
+</html>
