@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <span>城市</span>
+        
+        <select name="province" id="pro">
+            <option value="">请选择</option>
+        </select>
+        <select name="city" id="city">
+            <option value="朝阳区">请选择</option>
+        </select>
+    </div>
+    <script>
+        let prolist = ["北京","山东","湖北","江苏"]
+        let citylist = [["昌平区","丰台区","朝阳区","大兴区"],["济南","青岛","临沂","济宁","菏泽","烟台"],
+        ["武汉","宜昌","荆州","襄阳","黄石"],["南京","苏州","无锡","镇江","徐州"]]
+        // 加载省份 填充
+        for(let i=0;i<prolist.length;i++){
+            let opt = document.createElement("option")
+            let text = document.createTextNode(prolist[i])
+            opt.appendChild(text)
+            document.getElementById("pro").appendChild(opt)
+            opt.value = i
+
+
+        }
+        document.getElementById("pro").onchange = function(){
+            // 清空下拉框数据 每次选择新的省市前 则把原有的城市下拉框 清空 长度设为一
+            document.getElementById("city").options.length = 1
+
+
+            //  index 为获取到的下标如 北京0 山东1
+            let index = document.getElementById("pro").value
+            let citys = citylist[index]
+            if (index==""){
+                // 未选中省，城市为默认请选择
+                document.getElementById("city").innerHTML = "<option value=''>请选择</option>"
+
+            }
+            // 以下操作 把 city列表加入下拉框和省相同
+            for (let i=0;i<citys.length;i++){
+                let opt = document.createElement("option")
+                let text = document.createTextNode(citys[i])
+                opt.appendChild(text)
+                document.getElementById("city").appendChild(opt)
+                opt.value = i
+            }
+            
+        }
+        
+        
+    </script>
+</body>
+</html>
