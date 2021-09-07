@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // function fun(btnid){
+        //     var btn = document.getElementById(btnid);
+
+        // }
+        window.onload = function(){
+
+            // 单机全选
+            var items = document.getElementsByName("items")
+            var btn0 = document.getElementById("SelectAll");
+            var btn4 = document.getElementById("checkedAllBox");
+            btn0.onclick = function(){
+                // alert("全选")   设置选择框
+                // 获取框
+               
+                // alert(items[0].checked)
+                for (var i=0; i<items.length;i++){
+                    // 通过多选框的checked属性可以设置选中状态
+                    // items[i].checked = true;
+                    // alert(1)
+                    
+                    items[i].checked = true
+                };
+                btn4.checked = true
+                // 全不选
+                
+            };
+            // 全不选
+            var btn1 = document.getElementById("SelectNone");
+            btn1.onclick = function(){
+                // alert("全选")   设置选择框
+                // 获取框
+                // var items = document.getElementsByName("items");
+                // alert(items[0].checked)
+                for (var i=0; i<items.length;i++){
+                    // 通过多选框的checked属性可以设置选中状态
+                    // items[i].checked = true;
+                    // alert(1)
+                    items[i].checked = false
+                };
+                btn4.checked = false
+                // 全不选
+                
+            };
+            // 反选
+            var btn2 = document.getElementById("ReversSelect");
+            btn2.onclick = function(){
+                // alert("全选")   设置选择框
+                // 获取框
+              
+                // alert(items[0].checked)
+                for (var i=0; i<items.length;i++){
+                    // 通过多选框的checked属性可以设置选中状态
+                    // items[i].checked = true;
+                    // alert(1)
+                    if(items[i].checked){
+                        items[i].checked = false;
+                    }
+                    else{
+                        items[i].checked = true;
+                    }
+                    
+                };
+                // 全不选
+                
+            };
+            // 提交
+            var btn3 = document.getElementById("SubmitBtn");
+            btn3.onclick = function(){
+                // alert("全选")   设置选择框
+                // 获取框
+                // var items = document.getElementsByName("items");
+                // alert(items[0].checked)
+                for (var i=0; i<items.length;i++){
+                    // 通过多选框的checked属性可以设置选中状态
+                    // items[i].checked = true;
+                    // alert(1)
+                    if(items[i].checked){
+                        alert(items[i].value)   
+                    };
+                };
+            };
+            // 全选框和全不选框
+           
+            for (let i=0;i<items.length;i++){
+                // s首先默认是全选状态
+                
+                items[i].onclick = function(){
+                    // alert(1)
+                    btn4.checked = true
+                    
+                    for(var j=0;j<items.length;j++){
+                    //     // alert(1)
+                        if(!items[j].checked){
+                          
+                            btn4.checked = false 
+                        }
+                    }
+                }
+            }
+            
+           
+
+
+        }
+
+    </script>
+</head>
+<body>
+    <div style="width:100%;text-align:center">
+        <form method="POST" action="">
+            你最爱好的运动是<input type="checkbox" id="checkedAllBox"> 全选/全不选
+            <br>
+            <input type="checkbox" name="items" value="足球"/>足球
+            <input type="checkbox" name="items" value="篮球"/>篮球
+            <input type="checkbox" name="items" value="羽毛球"/>羽毛球
+            <input type="checkbox" name="items" value="乒乓球"/>乒乓球
+            <br>
+            <input type="button" id="SelectAll" value="全选"/>
+            <input type="button" id="SelectNone" value="全不选"/>
+            <input type="button" id="ReversSelect" value="反选"/>
+            <input type="button" id="SubmitBtn" value="提交"/>
+            
+
+        </form>
+    </div>
+
+</body>
+</html>
