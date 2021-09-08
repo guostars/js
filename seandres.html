@@ -70,6 +70,21 @@
                 };
                 // 全不选
                 
+                // s首先默认是全选状态
+                
+                
+                    // alert(1)
+                    btn4.checked = true
+                   
+                    for(var j=0;j<items.length;j++){
+                    //     // alert(1)
+                        if(!items[j].checked){
+                          
+                            btn4.checked = false 
+                        }
+                    }
+                
+            
             };
             // 提交
             var btn3 = document.getElementById("SubmitBtn");
@@ -88,14 +103,26 @@
                 };
             };
             // 全选框和全不选框
-           
+            btn4.onclick = function(){
+                // alert("全选")   设置选择框
+                // 获取框
+                // var items = document.getElementsByName("items");
+                // alert(items[0].checked)
+                for (var i=0; i<items.length;i++){
+                    // 通过多选框的checked属性可以设置选中状态
+                    // items[i].checked = true;
+                    // alert(1)
+                    items[i].checked = this.checked
+                       
+                };
+            };
             for (let i=0;i<items.length;i++){
                 // s首先默认是全选状态
                 
                 items[i].onclick = function(){
                     // alert(1)
                     btn4.checked = true
-                    
+                   
                     for(var j=0;j<items.length;j++){
                     //     // alert(1)
                         if(!items[j].checked){
