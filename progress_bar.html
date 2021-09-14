@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 400px;
+            height: 50px;
+            border: 1px solid black;
+            
+        }
+        .box2{
+            width: 0px;
+            height: 50px;
+            background-color: brown;
+            text-align: right;
+
+        }
+        /* span{
+            text-align: center;
+        } */
+    </style>
+</head>
+<body>
+    <div class="box1">
+        
+        <div class="box2">
+            <span id="num">0</span><span id="per">%</span>
+        </div>
+    </div>
+    <button id="btn">开始</button>
+    <script>
+        let btn = document.getElementById("btn")
+        let div = document.getElementsByClassName("box2")
+        let wid = document.getElementsByTagName("span")
+        // alert(typeof div)
+        let timer
+        btn.onclick = function(){
+            //  这里是防止误点  每次点击之前 清除之前的定时器
+            clearInterval(timer)
+            let num = 0
+            timer = setInterval(() => {
+                num += 10
+                if (num>=400){
+                    num = 400
+                }
+                
+                div[0].style.width = num +"px"
+                wid[0].innerHTML = Math.ceil(num/400*100)
+            }, 100);
+
+        }
+
+    </script>
+</body>
+</html>
