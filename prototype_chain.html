@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        function A(){
+
+        }
+        A.prototype.n = 1
+        // 实例对象的隐式原型，等于构造函数的显示原型
+        var b = new A()
+        // 这里 是又新开辟了 地址空间，改变了原来的prototype 的指向
+        A.prototype = {
+            n:2,
+            m:3
+        }
+        var c = new A()
+        // c的隐式原型 指向最新的A的地址
+        // 所以答案是 1  undefined 2 3
+        // 可以辅助画图
+        console.log(b.n,b.m,c.n,c.m)
+
+        // 2
+        function F(){}
+        Object.prototype.a = function(){
+            console.log("a")
+        }
+        Function.prototype.b = function(){
+            console.log("b")
+        }
+
+        var f = new F()
+        f.a()
+
+        // 报错 沿着隐式原型链 找不到b 找到隐式原型链的尽头是Object null
+        f.b()
+        F.a()
+        // F 函数的隐式原型是Function 找的到
+        F.b()
+
+
+    </script>
+
+</body>
+</html>
