@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // const p = new Promise(function(resolve,reject){
+        //     let m = {
+        //         code:20,
+        //         data:{
+        //             name:"这是我的名字"
+        //         },
+        //         reason:"失败"
+        //     }
+        //     setTimeout(()=>{
+        //         if (m.code===200){
+        //             resolve(m.data)
+        //         }
+        //         else{
+        //             reject(m.reason)
+        //         }
+                
+        //     },1000)
+        // })
+        // p.then(function(value){
+        //     console.log(value)
+        // },function(reason){
+        //     console.log(reason)
+        // })
+        function timeOut(ms){
+            return new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    resolve('success')
+                },ms)
+            })
+        }
+        timeOut(2000).then((value)=>{
+            console.log(value)
+        })
+    </script>
+</body>
+</html>
